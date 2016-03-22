@@ -1,0 +1,18 @@
+%p#notice
+  = notice
+
+%h1
+  Listing Images
+.new-image-block
+  =link_to "Add new", new_image_path , class: "btn btn-default add-new-image"
+
+.container-wide
+  - @images.each do |image|
+    .image-block{ style: "width: #{image.size[0]}px; height: #{image.size[1]}px;" }
+      = link_to "#", "#", class: "image-link",
+                          oncontextmenu:"javascript:alert('Nope!');return false;",
+                          style: "background-image: url( #{get_application_url(request) + image.img.url(:medium)} )"
+
+%br
+
+= link_to 'New Image', new_image_path
